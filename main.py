@@ -3,6 +3,8 @@ import logging
 import sys
 import datetime as dt
 
+from data import ADMIN, API_TOKEN
+
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
@@ -12,10 +14,6 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options # Подключаем все необходимые библиотеки
-
-
-API_TOKEN = "8702806640:AAHg8TOMEsOr0FsQzfLT2_VnVmM272DWz_s"
-ADMIN = '939104347'
 
 
 dp = Dispatcher()
