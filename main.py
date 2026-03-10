@@ -62,6 +62,7 @@ async def kwork_link(message: Message) -> None:
     await message.answer('Ссылка на страничку на Kwork:')
     await message.answer('https://kwork.ru/user/_vladimir-')
 
+
 # @dp.message(Command("show"))
 # async def show(message: types.Message):
 #     builder = InlineKeyboardBuilder()
