@@ -30,7 +30,7 @@ async def command_start_handler(message: Message) -> None:
                                                  f'{dt.datetime.now().strftime("%H:%M")}', chat_id=ADMIN)
     await message.answer('Ссылка на страничку на Kwork:')
     await message.answer('https://kwork.ru/user/_vladimir-')
-    await message.answer('Список актуальных команд для бота:\n/kwork_link - ссылка на Kwork'
+    await message.answer('Список актуальных команд для бота:'
                          '\n/parse - парсинг курса валют в данный момент')
 
 
