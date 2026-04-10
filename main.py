@@ -12,10 +12,12 @@ from aiogram.filters import CommandStart, Command
 from aiogram.types import Message, FSInputFile
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
+import requests
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options # Подключаем все необходимые библиотеки
 
-
+CITY_WEATHER_HANDLER = False
 dp = Dispatcher()
 
 
@@ -61,6 +63,24 @@ async def value_parsing(message: Message) -> None:
 async def kwork_link(message: Message) -> None:
     await message.answer('Ссылка на страничку на Kwork:')
     await message.answer('https://kwork.ru/user/_vladimir-')
+
+
+@dp.message(Command('weather')) # подтягивает прогноз погоды
+async def weather_site_parsing(message: Message) -> None:
+    global CITY_WEATHER_HANDLER
+    await message.answer('Введите, пожалуйста, название города, прогноз которого хотели бы узнать.')
+    CITY_WEATHER_HANDLER = True
+
+
+@dp.message()
+async def weather_message_handler(message: Message) -> None:
+    global CITY_WEATHER_HANDLER
+    if CITY_WEATHER_HANDLER:
+        city = message.text
+        url = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&lang=ru&appid=79d1ca96933b0328e1c7e3e7a26cb347'
+        weather_data = requests.get(url).json()
+        CITY_WEATHER_HANDLER = False
+        await message.answer(f'{city}: {weather_data["weather"][0]["description"]}, температура {round(weather_data["main"]["temp"])} °C, ощущается как {round(weather_data["main"]["temp"])} °C')
 
 
 # @dp.message(Command("show"))
