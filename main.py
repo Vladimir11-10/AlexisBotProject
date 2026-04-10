@@ -31,7 +31,8 @@ async def command_start_handler(message: Message) -> None:
     await message.answer('Ссылка на страничку на Kwork:')
     await message.answer('https://kwork.ru/user/_vladimir-')
     await message.answer('Список актуальных команд для бота:'
-                         '\n/parse - парсинг курса валют в данный момент')
+                         '\n/parse - парсинг курса валют в данный момент'
+                         '\n/weather - погода в любом городе, название которого вы введете.')
 
 
 @dp.message(Command('parse')) # парсинг сайта ЦБ РФ с курсом валют
