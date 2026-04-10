@@ -80,7 +80,10 @@ async def weather_message_handler(message: Message) -> None:
         url = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&lang=ru&appid=79d1ca96933b0328e1c7e3e7a26cb347'
         weather_data = requests.get(url).json()
         CITY_WEATHER_HANDLER = False
-        await message.answer(f'{city}: {weather_data["weather"][0]["description"]}, температура {round(weather_data["main"]["temp"])} °C, ощущается как {round(weather_data["main"]["temp"])} °C')
+        try:
+            await message.answer(f'{city}: {weather_data["weather"][0]["description"]}, температура {round(weather_data["main"]["temp"])} °C, ощущается как {round(weather_data["main"]["temp"])} °C')
+        except Exception:
+            await message.answer(f'Извините, произошла ошибка. Попробуйте ещё раз или другой город.')
 
 
 # @dp.message(Command("show"))
